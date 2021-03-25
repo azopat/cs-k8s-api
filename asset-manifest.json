@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/cs-k8s-api/static/css/main.64a3347d.chunk.css",
+    "main.js": "/cs-k8s-api/static/js/main.b8e709ab.chunk.js",
+    "main.js.map": "/cs-k8s-api/static/js/main.b8e709ab.chunk.js.map",
+    "runtime-main.js": "/cs-k8s-api/static/js/runtime-main.ee090c32.js",
+    "runtime-main.js.map": "/cs-k8s-api/static/js/runtime-main.ee090c32.js.map",
+    "static/css/2.ecb7c289.chunk.css": "/cs-k8s-api/static/css/2.ecb7c289.chunk.css",
+    "static/js/2.f9695928.chunk.js": "/cs-k8s-api/static/js/2.f9695928.chunk.js",
+    "static/js/2.f9695928.chunk.js.map": "/cs-k8s-api/static/js/2.f9695928.chunk.js.map",
+    "index.html": "/cs-k8s-api/index.html",
+    "precache-manifest.1124911382c19b4865571d7dbcb43efd.js": "/cs-k8s-api/precache-manifest.1124911382c19b4865571d7dbcb43efd.js",
+    "service-worker.js": "/cs-k8s-api/service-worker.js",
+    "static/css/2.ecb7c289.chunk.css.map": "/cs-k8s-api/static/css/2.ecb7c289.chunk.css.map",
+    "static/css/main.64a3347d.chunk.css.map": "/cs-k8s-api/static/css/main.64a3347d.chunk.css.map",
+    "static/js/2.f9695928.chunk.js.LICENSE.txt": "/cs-k8s-api/static/js/2.f9695928.chunk.js.LICENSE.txt",
+    "static/media/api.yaml": "/cs-k8s-api/static/media/api.205bac47.yaml",
+    "static/media/App.css": "/cs-k8s-api/static/media/roboto-regular-webfont.d96d07c1.woff2",
+    "static/media/logo.svg": "/cs-k8s-api/static/media/logo.f2df34b5.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ee090c32.js",
+    "static/css/2.ecb7c289.chunk.css",
+    "static/js/2.f9695928.chunk.js",
+    "static/css/main.64a3347d.chunk.css",
+    "static/js/main.b8e709ab.chunk.js"
+  ]
+}
