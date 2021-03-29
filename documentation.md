@@ -101,9 +101,9 @@
     ```
 - Update endpoints with c# api endpoints in below three lines
     ```
-    ARG REACT_APP_ANALYSE_API_ENDPOINT='http://compliantk8sicaplb-6921a9b8d2e49b4f.elb.eu-west-1.amazonaws.com:1346'
-    ARG REACT_APP_FILETYPEDETECTION_API_ENDPOINT='http://compliantk8sicaplb-6921a9b8d2e49b4f.elb.eu-west-1.amazonaws.com:1346'
-    ARG REACT_APP_REBUILD_API_ENDPOINT='http://compliantk8sicaplb-6921a9b8d2e49b4f.elb.eu-west-1.amazonaws.com:1346'
+    ARG REACT_APP_ANALYSE_API_ENDPOINT='http://<ip>:<port>'
+    ARG REACT_APP_FILETYPEDETECTION_API_ENDPOINT='http://<ip>:<port>'
+    ARG REACT_APP_REBUILD_API_ENDPOINT='http://<ip>:<port>'
     ```
 - Run : `docker build -t k8-rebuild-file-drop .`
 - Run: `docker run -it --rm -p 80:80 k8-rebuild-file-drop`
@@ -115,10 +115,7 @@
 - How to use file-drop [ Link ](https://github.com/k8-proxy/glasswall-servers-eval/wiki/How-to-use-File-Drop)
 
 
-Note : To Deploy in AWS, an AMI needs to be created with above setup
-
-
-
+Note : To Deploy in AWS, an AMI needs to be created with above setup.
 
 
 
