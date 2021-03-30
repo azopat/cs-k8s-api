@@ -14,7 +14,6 @@ From VMWare ESXi console or VMware workstation:
    - Give the VM ~10 minutes before jumping to usage
    - Configure Password > Type new password 
 
-
 ### Deploying ICAP Server OVA on VirtualBox
 
 - Download ICAP Server OVA
@@ -28,6 +27,3 @@ From VMWare ESXi console or VMware workstation:
 - Then run `sudo systemctl restart k3s`
 - Give it ~10 minutes before usage
 - In case you see `metricbit` pod crashing, bare in mind, this will not impact the system setup. In case there is an elasticsearch in private network which can be connected by metricbeat, then the metricbeat pod will run fine, if there is no elasticsearch then it will keep crashing but without any impact. 
-  
-| [Previous Page](https://github.com/k8-proxy/glasswall-servers-eval/wiki/Deploying-File-Drop)  | [Next Page](https://github.com/k8-proxy/glasswall-servers-eval/wiki/How-to-use-File-Drop) |
-| :--        |         --: |
