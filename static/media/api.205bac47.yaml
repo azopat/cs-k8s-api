@@ -274,6 +274,76 @@ paths:
                       type: string                    
                   status:
                       type: string                                                   
+  /api/rebuild/zipfile:
+    post:
+      tags:
+      - Rebuild    
+      summary: Rebuilds a zip file using its binary data
+      description: <h3>Description:</h3>This endpoint accepts requests to rebuild a zip file with Glasswall d-FIRST™ Engine. Both the file and the Content Management Policy are sent in the request body with a 'Content-Type' of 'multipart/form-data'. Rebuilt zip file is then returned in the response body with a 'Content-Type' of 'application/octet-stream'.
+      parameters:
+        - in: header
+          name: Accept
+          description: A value of 'application/octet-stream' will return the rebuilt file's binary content to the client.
+          schema:
+            type: string
+            default: application/octet-stream
+          required: false
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The binary contents of the selected zip file will be uploaded to the server.
+              required:
+                - file
+            encoding:
+              file:
+                style: form
+              contentManagementFlagJson:
+                contentType: application/json
+                style: form
+      responses:
+        '200':    # status code
+          description: OK - The requested file was processed by the Glasswall d-FIRST™ Engine
+          content: 
+            application/octet-stream:
+              schema:
+                format: binary
+                description: The body is a binary stream, containing the rebuilt file
+          headers:
+            Content-D isposition:
+              schema:
+                type: string
+              example: attachment; filename=ExampleFileName.pdf; filename*=UTF-8''ExampleFileName.pdf
+              description: This contains the details of the rebuilt files binary data to download
+        '400':
+          description: Bad Request - This is usually when the JSON input is malformed or missing parameters
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CloudProxyResponseModel'
+                  - $ref: '#/components/schemas/RequiredResponseModel'
+        '415':
+          $ref: '#/components/schemas/UnsupportedMediaType' 
+        '500':
+          description: Internal Server Error - This is usually when something wrong on the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    description: "Error relating to the request"
+                    items:
+                      type: string                    
+                  status:
+                      type: string
 components:
   securitySchemes:
     BearerAuth:
