@@ -8,16 +8,31 @@ info:
   description: The Rebuild API provides developers the pathway to obtaining safe and secure files.
   version: 0.1.9
 tags:
+  - name: Health
+    description: Glasswall System Health API  
   - name: Rebuild
     description: Glasswall File Rebuild Product API
   - name: Analyse
     description: Glasswall Analyse Product API
   - name: FileTypeDetection
-    description: Glasswall FileTypeDetection Product API        
+    description: Glasswall FileTypeDetection Product API          
 servers:
   - url: http://compliantk8sicaplb4-1ad57867b21c4c24.elb.eu-west-1.amazonaws.com:1346
     description: AWS
 paths:
+  /api/health:
+    get:
+      tags:
+      - Health    
+      summary: Returns 200 status code.
+      description: <h3>Description:</h3>This endpoint is to check the health of the system.         
+      responses:
+        '200':    # status code
+          description: OK - The request was processed successfully and service is up and running.             
+        '415':
+          $ref: '#/components/schemas/UnsupportedMediaType' 
+        '500':
+          description: Internal Server Error - This is usually when something wrong on the server.
   /api/rebuild/file:
     post:
       tags:
