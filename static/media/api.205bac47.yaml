@@ -193,7 +193,13 @@ paths:
               schema:
                 oneOf:
                   - $ref: '#/components/schemas/CloudProxyResponseModel'
-                  - $ref: '#/components/schemas/RequiredResponseModel'                  
+                  - $ref: '#/components/schemas/RequiredResponseModel' 
+        '404':
+          description: Not Found - This is usually when the required return data is missing on server.
+          content:
+            application/json:
+              schema:          
+                $ref: '#/components/schemas/CloudProxyResponseModel'                                      
         '415':
           $ref: '#/components/schemas/UnsupportedMediaType' 
         '500':
@@ -210,7 +216,137 @@ paths:
                       type: string                    
                   status:
                       type: string
-  /api/FileTypeDetection/base64:
+  /api/analyse/xmlreport:
+    get:
+      tags:
+      - Analyse    
+      summary: Returns a xml report file using its FileId.
+      description: <h3>Description:</h3>This endpoint accepts FileId to fetch the xml report.
+      parameters:
+        - in: header
+          name: Accept
+          description: A value of 'application/octet-stream' will return the xml report file's binary content to the client.
+          schema:
+            type: string
+            default: application/octet-stream
+          required: false
+        - in: query
+          name: fileId
+          description: A value of 'FileId', based on will return the xml report file's binary content to the client.
+          schema:
+            type: string
+            default: 475df7aa-9739-4b7d-929e-40e625c14581
+          required: true          
+      responses:
+        '200':    # status code
+          description: OK - The request was processed by the Glasswall d-FIRST™ Engine and the xml report file's binary content is returned to the client.
+          content: 
+            application/octet-stream:
+              schema:
+                format: binary
+                description: The body is a binary stream, containing the xml report file
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+              example: attachment; filename=report.xml; filename*=UTF-8''report.xml
+              description: This contains the details of the xml report files binary data to download
+        '400':
+          description: Bad Request - This is usually when the input is malformed or missing parameters
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CloudProxyResponseModel'
+                  - $ref: '#/components/schemas/RequiredResponseModel'
+        '404':
+          description: Not Found - This is usually when the required return data is missing on server.
+          content:
+            application/json:
+              schema:          
+                $ref: '#/components/schemas/CloudProxyResponseModel'                     
+        '415':
+          $ref: '#/components/schemas/UnsupportedMediaType' 
+        '500':
+          description: Internal Server Error - This is usually when something wrong on the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    description: "Error relating to the request"
+                    items:
+                      type: string                    
+                  status:
+                      type: string
+  /api/analyse/rebuildzip:
+    get:
+      tags:
+      - Analyse    
+      summary: Returns a zip file with all available data using its FileId.
+      description: <h3>Description:</h3>This endpoint accepts FileId to fetch all the available data.
+      parameters:
+        - in: header
+          name: Accept
+          description: A value of 'application/octet-stream' will return the zip file's binary content to the client.
+          schema:
+            type: string
+            default: application/octet-stream
+          required: false
+        - in: query
+          name: fileId
+          description: A value of 'FileId', based on will return the zip file's binary content to the client.
+          schema:
+            type: string
+            default: 475df7aa-9739-4b7d-929e-40e625c14581
+          required: true          
+      responses:
+        '200':    # status code
+          description: OK - The request was processed by the Glasswall d-FIRST™ Engine and the zip file's binary content is returned to the client.
+          content: 
+            application/octet-stream:
+              schema:
+                format: binary
+                description: The body is a binary stream, containing the zip file
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+              example: attachment; filename=475df7aa-9739-4b7d-929e-40e625c14581.zip; filename*=UTF-8''475df7aa-9739-4b7d-929e-40e625c14581.zip
+              description: This contains the details of the xml report files binary data to download
+        '400':
+          description: Bad Request - This is usually when the input is malformed or missing parameters
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CloudProxyResponseModel'
+                  - $ref: '#/components/schemas/RequiredResponseModel'
+        '404':
+          description: Not Found - This is usually when the required return data is missing on server.
+          content:
+            application/json:
+              schema:          
+                $ref: '#/components/schemas/CloudProxyResponseModel'                
+        '415':
+          $ref: '#/components/schemas/UnsupportedMediaType' 
+        '500':
+          description: Internal Server Error - This is usually when something wrong on the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    description: "Error relating to the request"
+                    items:
+                      type: string                    
+                  status:
+                      type: string
+  /api/fileyypedetection/base64:
     post:
       tags:
       - FileTypeDetection    
@@ -257,7 +393,13 @@ paths:
               schema:
                 oneOf:
                   - $ref: '#/components/schemas/CloudProxyResponseModel'
-                  - $ref: '#/components/schemas/RequiredResponseModel'                  
+                  - $ref: '#/components/schemas/RequiredResponseModel' 
+        '404':
+          description: Not Found - This is usually when the required return data is missing on server.
+          content:
+            application/json:
+              schema:          
+                $ref: '#/components/schemas/CloudProxyResponseModel'                                     
         '415':
           $ref: '#/components/schemas/UnsupportedMediaType' 
         '500':
@@ -279,7 +421,7 @@ paths:
       tags:
       - Rebuild    
       summary: Rebuilds a zip file using its binary data
-      description: <h3>Description:</h3>This endpoint accepts requests to rebuild a zip file with Glasswall d-FIRST™ Engine. Both the file and the Content Management Policy are sent in the request body with a 'Content-Type' of 'multipart/form-data'. Rebuilt zip file is then returned in the response body with a 'Content-Type' of 'application/octet-stream'.
+      description: <h3>Description:</h3>This endpoint accepts requests to rebuild a zip file with Glasswall d-FIRST™ Engine. The file is sent in the request body with a 'Content-Type' of 'multipart/form-data'. Rebuilt zip file is then returned in the response body with a 'Content-Type' of 'application/octet-stream'.
       parameters:
         - in: header
           name: Accept
@@ -315,13 +457,13 @@ paths:
                 format: binary
                 description: The body is a binary stream, containing the rebuilt file
           headers:
-            Content-D isposition:
+            Content-Disposition:
               schema:
                 type: string
               example: attachment; filename=ExampleFileName.pdf; filename*=UTF-8''ExampleFileName.pdf
               description: This contains the details of the rebuilt files binary data to download
         '400':
-          description: Bad Request - This is usually when the JSON input is malformed or missing parameters
+          description: Bad Request - This is usually when the input is malformed or missing parameters
           content:
             application/json:
               schema:
@@ -343,7 +485,7 @@ paths:
                     items:
                       type: string                    
                   status:
-                      type: string
+                      type: string                      
 components:
   securitySchemes:
     BearerAuth:
