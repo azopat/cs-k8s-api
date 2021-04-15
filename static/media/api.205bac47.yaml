@@ -391,7 +391,7 @@ paths:
                         - GW_FAILED
                         - GW_UNPROCESSED
                         - GW_ERROR                      
-  /api/fileyypedetection/base64:
+  /api/filetypedetection/base64:
     post:
       tags:
       - FileTypeDetection    
