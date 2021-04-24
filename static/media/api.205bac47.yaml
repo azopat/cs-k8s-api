@@ -44,6 +44,14 @@ paths:
               schema:
                 type: string
               description: Version of the Cloud SDK Api. 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
         '405':
           description: Method Not Allowed - This happens when an HTTP method is not allowed by a server for a requested URL.
           headers:
